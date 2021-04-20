@@ -4,16 +4,20 @@ class ApplicationController < ActionController::Base
   private
 
   def validate_tenant
-    unless params[:api_key]
+    if request.env[Tenants::Throttle::MISSING_API_KEY]
       render json: { message: 'Missing API KEY' }, status: :bad_request
       return
     end
 
-    @tenant = Tenant.find_by(api_key: params[:api_key])
-    @tenant.track_request
-
-    unless @tenant
+    if request.env[Tenants::Throttle::INVALID_API_KEY]
       render json: { message: 'Invalid API KEY' }, status: :unauthorized
+      return
     end
+
+    if request.env[Tenants::Throttle::TENANT_BLOCKED]
+      render json: { message: 'Quota limit reached' }, status: :too_many_requests
+    end
+
+    @tenant_count = Tenants::Throttle.new(params[:api_key]).daily_count
   end
 end
