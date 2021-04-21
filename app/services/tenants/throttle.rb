@@ -4,7 +4,7 @@ module Tenants
 
     TENANT_BLOCKED = 'tenant_blocked'.freeze
     MISSING_API_KEY = 'missing_api_key'.freeze
-    INVALID_API_KEY = 'missing_api_key'.freeze
+    INVALID_API_KEY = 'invalid_api_key'.freeze
 
     TENANT_COUNT_KEY_PREFIX = 'daily_tenant_count_'.freeze
     INITIALIZED_TENANT_COUNT_KEY_PREFIX = 'daily_tenant_count_initialized_'.freeze
@@ -40,7 +40,8 @@ module Tenants
       Rails.cache.write("#{TENANT_COUNT_KEY_PREFIX}#{@tenant.id}", 0)
       Rails.cache.write(
         "#{INITIALIZED_TENANT_COUNT_KEY_PREFIX}#{@tenant.id}",
-        true, expires_in: 1.day
+        true,
+        expires_in: 1.day
       )
     end
 

@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
       render json: { message: 'Quota limit reached' }, status: :too_many_requests
     end
 
-    @tenant_count = Tenants::Throttle.new(params[:api_key]).daily_count
+    @tenant_requests_count = Tenants::Throttle.new(params[:api_key]).daily_count
   end
 end
