@@ -20,8 +20,7 @@ RSpec.describe QuestionsController, type: :controller do
 
         expected_response = QuestionBlueprint.render(
           Question.shareable,
-          root: :questions,
-          meta: { tenant_requests_count: nil }
+          root: :questions
         )
 
         expect(response.body).to eq(expected_response)

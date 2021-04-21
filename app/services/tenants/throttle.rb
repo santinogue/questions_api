@@ -8,7 +8,7 @@ module Tenants
 
     TENANT_COUNT_KEY_PREFIX = 'daily_tenant_count_'.freeze
     INITIALIZED_TENANT_COUNT_KEY_PREFIX = 'daily_tenant_count_initialized_'.freeze
-    UNBLOCKING_TENANT_DATE_KEY_PREFIX = 'daily_tenant_unblocking_date_'.freeze
+    UNBLOCKING_TENANT_DATE_KEY_PREFIX = 'daily_tenant_unblocking_datetime_'.freeze
 
     def initialize(api_key)
       @tenant = Tenant.find_by(api_key: api_key)
@@ -66,7 +66,7 @@ module Tenants
     end
 
     def quota_limit_reached?
-      daily_count > QUOTA_LIMIT
+      daily_count >= QUOTA_LIMIT
     end
 
     def must_wait?

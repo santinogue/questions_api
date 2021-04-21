@@ -47,6 +47,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   # Fixtures replacement
   gem 'factory_bot_rails'
+  # Provides RSpec liners to test common Rails functionality
+  gem 'shoulda-matchers'
 end
 
 group :development do

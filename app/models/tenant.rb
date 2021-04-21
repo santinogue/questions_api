@@ -1,5 +1,4 @@
 class Tenant < ApplicationRecord
-
   before_create :generate_api_key
 
   def track_request

@@ -2,8 +2,7 @@ class QuestionsController < ApplicationController
   def index
     render json: QuestionBlueprint.render(
       Question.shareable,
-      root: :questions,
-      meta: { tenant_requests_count: @tenant_requests_count }
+      root: :questions
     ), status: :ok
   end
 end
