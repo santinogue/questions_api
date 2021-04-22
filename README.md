@@ -1,3 +1,22 @@
+# NOTES
+
+Redis is used for the tenant's throttle logic. You must install redis-server in your machine.
+
+The approach selected to track the daily usage of a tenant uses Redis cache.
+
+Another possible approach would have been to model the API requests, on their own table, and associate them with the tenants.
+
+The cache approach was selected to enhance the response time of the requests.
+
+
+# TODO
+
+1.  Add pagination to questions#index (For questions and answers.) Consider Kaminari gem.
+2.  Versioning of API (Routes/Controllers/Serializers), consider the following approach https://chriskottom.com/blog/2017/04/versioning-a-rails-api/
+3.  Add an index to Tenant api_key column to speed up requests.
+4.  Comment code using something like YARD.
+5.  Improve Dashboard page design. Right now is really really basic.
+
 # BacklotCars Rails Engineer Candidate Interview Project
 
 Thanks for taking the time to complete this exercise. We're excited that you're considering joining our amazing team.
