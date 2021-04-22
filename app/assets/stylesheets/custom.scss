@@ -1,0 +1,28 @@
+body {
+  height: 100vh;
+}
+
+.bg-gray {
+  background-color: rgb(63, 78, 78);
+}
+
+.bg-blue {
+  background-color: rgb(27, 14, 146);
+}
+
+.bg-orange {
+  background-color: rgb(219, 138, 17);
+}
+
+.bg-green {
+  background-color: rgb(49, 134, 28);
+}
+
+.column {
+  @extend .col-md-6;
+  @extend .d-flex;
+  @extend .justify-content-center;
+  @extend .align-items-center;
+
+  color: white;
+}

@@ -1,6 +1,6 @@
 module Tenants
   class Throttle
-    QUOTA_LIMIT = 100
+    QUOTA_LIMIT = 3
 
     TENANT_BLOCKED = 'tenant_blocked'.freeze
     MISSING_API_KEY = 'missing_api_key'.freeze
@@ -70,7 +70,7 @@ module Tenants
     end
 
     def must_wait?
-      Time.now < unblocking_date
+      unblocking_date && Time.now < unblocking_date
     end
   end
 end
