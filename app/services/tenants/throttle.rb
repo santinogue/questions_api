@@ -1,6 +1,6 @@
 module Tenants
   class Throttle
-    QUOTA_LIMIT = 3
+    QUOTA_LIMIT = 100
 
     TENANT_BLOCKED = 'tenant_blocked'.freeze
     MISSING_API_KEY = 'missing_api_key'.freeze
@@ -26,11 +26,11 @@ module Tenants
       daily_tracking_initialized? && quota_limit_reached? && must_wait?
     end
 
+    private
+
     def daily_count
       Rails.cache.read("#{TENANT_COUNT_KEY_PREFIX}#{@tenant.id}")
     end
-
-    private
 
     def daily_tracking_initialized?
       Rails.cache.read("#{INITIALIZED_TENANT_COUNT_KEY_PREFIX}#{@tenant.id}")
